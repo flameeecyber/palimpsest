@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ artifact.display_name }} — Palimpsest</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="detail">
+<div class="grain" aria-hidden="true"></div>
+
+<p class="back"><a href="index.html">← the case</a></p>
+
+<header class="detail-head">
+  <p class="eyebrow">{{ artifact.kind }} · {{ artifact.recovery_method }} · {{ artifact.size|human_size }}</p>
+  <h1>{{ artifact.display_name }}</h1>
+  {% if artifact.suggested_name %}
+    <p class="suggest">probably <b>{{ artifact.suggested_name }}</b> · a hypothesis, not a recovery</p>
+  {% endif %}
+  {% if artifact.deleted_at %}<p class="died">deleted {{ artifact.deleted_at }}</p>{% endif %}
+</header>
+
+{% if media.thumb or media.file %}
+<figure class="preview">
+  {% if media.thumb %}<img src="../{{ media.thumb }}" alt="recovered {{ artifact.kind }}">{% endif %}
+  {% if media.file and artifact.kind == 'document' %}<iframe src="../{{ media.file }}" title="recovered document"></iframe>{% endif %}
+  {% if media.file and artifact.kind in ['audio','video'] %}<audio controls src="../{{ media.file }}"></audio>{% endif %}
+</figure>
+{% endif %}
+
+<section class="epitaph-block">
+  <h2>Epitaph</h2>
+  {% if claims %}
+    {% for c in claims %}
+      {% if not c.struck %}
+      <p class="claim {{ c.confidence }}">{{ c.text }}
+        {% for chip in c.chips %}<span class="ev" title="{{ chip.source }}: {{ chip.value }}">{{ chip.id }}</span>{% endfor %}
+        <span class="support" title="share of content words found in the cited evidence">{{ (c.support * 100)|round(0)|int }}% supported</span>
+      </p>
+      {% endif %}
+    {% endfor %}
+    {% for c in claims %}
+      {% if c.struck %}
+      <p class="struck"><s>{{ c.text }}</s> <span class="why">struck: {{ c.reason }}</span></p>
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    <p class="quiet">No epitaph was written for this artifact.</p>
+  {% endif %}
+</section>
+
+{% if artifact.hypothesis %}
+<section class="hypo-block">
+  <h2>Hypothesis</h2>
+  <p>{{ artifact.hypothesis }}</p>
+  <p class="quiet">confidence: {{ artifact.hypothesis_confidence or 'low' }}. This file could not be recovered;
+  the blocks were overwritten. The sentence above is an inference, not a fact.</p>
+</section>
+{% endif %}
+
+<section class="evidence">
+  <h2>Evidence</h2>
+  <table>
+    <thead><tr><th>id</th><th>source</th><th>value</th></tr></thead>
+    <tbody>
+    {% for e in artifact.evidence %}
+      <tr><td class="eid">{{ e.id }}</td><td>{{ e.source }}</td><td>{{ e.value }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+{% if artifact.text_excerpt %}
+<section class="excerpt">
+  <h2>Recovered text</h2>
+  <pre>{{ artifact.text_excerpt }}</pre>
+</section>
+{% endif %}
+
+<section class="raw">
+  <h2>Provenance</h2>
+  <dl>
+    <dt>sha256</dt><dd><code>{{ artifact.sha256 or '—' }}</code></dd>
+    <dt>inode</dt><dd><code>{{ artifact.inode or '—' }}</code></dd>
+    <dt>recovered path</dt><dd><code>{{ artifact.recovered_path or '—' }}</code></dd>
+    <dt>cluster</dt><dd>{{ cluster.name if cluster else 'unlinked' }}</dd>
+    <dt>narrated by</dt><dd><code>{{ artifact.narration_model or '—' }}</code></dd>
+  </dl>
+</section>
+
+<footer><p><a href="index.html">← back to the case</a></p></footer>
+</body>
+</html>
