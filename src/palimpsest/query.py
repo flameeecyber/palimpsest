@@ -131,8 +131,10 @@ def _context(artifacts: list[Artifact]) -> str:
             or a.triage.get("subject")
             or a.kind
         )
+        state = "unrecovered" if a.missing else "recovered"
         lines.append(
-            f"[{a.id}] {a.display_name} | {a.kind} | deleted {a.deleted_at or 'unknown'} "
+            f"[{a.id}] {a.display_name} | {state} | {a.kind} "
+            f"| deleted {a.deleted_at or 'unknown'} "
             f"| created {a.created_at or 'unknown'} | cluster {a.cluster or 'none'} "
             f"| {descriptor}"
         )
@@ -158,6 +160,12 @@ def ask(
     scores = vectors @ (query / norm)
     order = np.argsort(-scores)[:top_k]
     chosen = [by_id[ids[i]] for i in order if ids[i] in by_id]
+
+    # Unrecoverable files have no embedding: there is nothing to embed. They are
+    # also the most distinctive thing in the case, so they are always in view
+    # rather than ranked. A question about what is missing has to be answerable.
+    seen = {a.id for a in chosen}
+    chosen += [a for a in artifacts if a.missing and a.id not in seen]
 
     prompt = (
         prompts.load("query")

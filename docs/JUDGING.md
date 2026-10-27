@@ -98,7 +98,7 @@ What is actually implemented:
 | Validator-in-the-loop | rejected sentences are fed back once; the best attempt wins |
 | Reproducibility | content-addressed cache, prompt hashes, tool versions, `verify` |
 | Durability | seven Temporal activities, heartbeats, a manifest written by the workflow |
-| Tests | 49 tests, no model or disk image required |
+| Tests | 52 tests, no model or disk image required |
 | CI | compile, tests, offline end-to-end run on a generated image |
 | Offline UI | static HTML/CSS, no JS, no CDN, media copied locally |
 
@@ -148,6 +148,8 @@ asks for durability, and the design genuinely provides it.
 
 - `tracing.py` wraps every stage in a span with counts (artifacts, clusters,
   hypotheses, narrated).
+- The same spans print to stderr with `PALIMPSEST_TRACE=1`, so the claim is
+  checkable without an account or a network. The post shows a real span log.
 - It is a **no-op** unless `SENTRY_DSN` is set, because the tool must run with
   the network off. When enabled it sends span names and counts, never file
   contents or evidence values.

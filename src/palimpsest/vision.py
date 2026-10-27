@@ -91,10 +91,13 @@ def triage_all(
     A 4B vision model on a CPU is slow. Triaging the 40 artifacts most likely to
     be memories, instead of 4,000 fragments, is a design decision: the ranking
     is part of the product, and the case store caches every result.
+
+    `limit=0` means triage nothing, which is what `--vision-limit 0` should mean
+    on a machine that cannot afford the call. `limit=None` means no cap.
     """
     candidates = [a for a in artifacts if can_see(a)]
-    if limit is not None and limit > 0:
-        candidates = sorted(candidates, key=_hero_key, reverse=True)[:limit]
+    if limit is not None:
+        candidates = sorted(candidates, key=_hero_key, reverse=True)[: max(limit, 0)]
 
     done = 0
     for artifact in candidates:
