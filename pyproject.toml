@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "palimpsest"
+version = "0.1.0"
+description = "Recover deleted files and tell their story, offline."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = ["numpy>=1.26", "jinja2>=3.1"]
+
+[project.optional-dependencies]
+temporal = ["temporalio>=1.7"]
+tracing = ["sentry-sdk>=2.0"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+palimpsest = "palimpsest.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

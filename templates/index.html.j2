@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Palimpsest — {{ case.target }}</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="hero">
+  <svg class="papel" viewBox="0 0 1200 90" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <pattern id="p" x="0" y="0" width="120" height="90" patternUnits="userSpaceOnUse">
+        <path d="M0 0 H120 V18 H0 Z" fill="#f2a33c" opacity=".85"/>
+        <path d="M10 18 H110 L60 78 Z" fill="#c8542f" opacity=".9"/>
+        <circle cx="34" cy="40" r="6" fill="#0b0a0c"/>
+        <circle cx="86" cy="40" r="6" fill="#0b0a0c"/>
+        <circle cx="60" cy="56" r="5" fill="#0b0a0c"/>
+        <path d="M0 18 H120" stroke="#0b0a0c" stroke-width="2"/>
+      </pattern>
+    </defs>
+    <rect width="1200" height="90" fill="url(#p)"/>
+  </svg>
+
+  <p class="eyebrow">a case file, recovered with the network off</p>
+  <h1>Palimpsest</h1>
+  <p class="lede">
+    A disk is a palimpsest: written over, never quite erased.
+    This case was recovered from <code>{{ case.target }}</code>.
+  </p>
+
+  <div class="stats">
+    <div><b>{{ stats.recovered }}</b><span>files returned</span></div>
+    <div><b>{{ stats.missing }}</b><span>provably existed, gone</span></div>
+    <div><b>{{ stats.clusters }}</b><span>groups found by meaning</span></div>
+    <div><b>{{ (stats.grounded_ratio * 100)|round(0)|int }}%</b><span>sentences with a source</span></div>
+  </div>
+  <p class="modelnote">
+    model: <code>{{ stats.model }}</code> · deleted between {{ stats.date_range }} ·
+    {{ stats.struck }} unsupported sentences struck before publication
+  </p>
+</header>
+
+{% if case_claims %}
+<section class="note">
+  <h2>The case note</h2>
+  {% for c in case_claims %}
+    {% if not c.struck %}
+    <p class="claim">{{ c.text }} <span class="refs">{{ c.evidence|join(' ') }}</span></p>
+    {% endif %}
+  {% endfor %}
+</section>
+{% endif %}
+
+{% if clusters %}
+<section class="clusters">
+  <h2>What the machine grouped</h2>
+  <div class="cluster-row">
+  {% for c in clusters %}
+    <article class="cluster">
+      <h3>{{ c.name }}</h3>
+      <p>{{ c.summary }}</p>
+      <span class="count">{{ c.members|length }} files · {{ c.id }}</span>
+    </article>
+  {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if timeline %}
+<section class="timeline">
+  <h2>When they died</h2>
+  <ul>
+  {% for event in timeline %}
+    <li class="{{ 'mass' if event.mass }}">
+      <span class="date">{{ event.date }}</span>
+      <span class="bar" style="--w: {{ [event.count * 8, 320]|min }}px"></span>
+      <span class="num">{{ event.count }} deleted{% if event.mass %} · together{% endif %}</span>
+    </li>
+  {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+<main class="grid">
+{% for card in cards %}
+  <article class="tomb {{ 'missing' if card.artifact.missing }}">
+    <div class="tomb-art">
+      {% if card.media.thumb %}
+        <img src="{{ card.media.thumb }}" alt="" loading="lazy">
+      {% else %}
+        <div class="sigil">{{ card.artifact.kind[:3] }}</div>
+      {% endif %}
+    </div>
+    <h3><a href="{{ card.artifact.id }}.html">{{ card.artifact.display_name }}</a></h3>
+    <p class="meta">
+      {{ card.artifact.kind }} · {{ card.artifact.size|human_size }}
+      {% if card.artifact.deleted_at %}· died {{ card.artifact.deleted_at|short_date }}{% endif %}
+    </p>
+    {% if card.artifact.suggested_name %}
+      <p class="suggest">probably <b>{{ card.artifact.suggested_name }}</b></p>
+    {% endif %}
+    <p class="label">{{ card.label }}</p>
+    {% if card.artifact.missing %}
+      <p class="hypo"><span class="tag">hypothesis · {{ card.artifact.hypothesis_confidence or 'low' }}</span>
+        {{ card.artifact.hypothesis or 'No blocks survived. Nothing to read.' }}</p>
+    {% elif card.artifact.epitaph %}
+      <p class="epitaph">{{ card.artifact.epitaph }}</p>
+    {% else %}
+      <p class="epitaph quiet">No epitaph. The evidence was thin.</p>
+    {% endif %}
+    <div class="tomb-foot">
+      {% if card.cluster %}<span class="chip">{{ card.cluster.name }}</span>{% endif %}
+      <span class="chip ghost">{{ card.artifact.recovery_method }}</span>
+    </div>
+  </article>
+{% endfor %}
+</main>
+
+<footer>
+  <p>Recovered by Palimpsest. Every sentence above carries the evidence id it came from.
+  Nothing on this page was sent anywhere.</p>
+</footer>
+</body>
+</html>

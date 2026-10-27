@@ -1,0 +1,266 @@
+:root {
+  --ink: #0b0a0c;
+  --ink-2: #121014;
+  --bone: #e9e2d4;
+  --ash: #948b80;
+  --line: #2a2529;
+  --marigold: #f2a33c;
+  --marigold-deep: #c8542f;
+  --violet: #8d7bb8;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { background: var(--ink); }
+
+body {
+  margin: 0;
+  color: var(--bone);
+  font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background:
+    radial-gradient(900px 420px at 50% -8%, rgba(242, 163, 60, .16), transparent 70%),
+    radial-gradient(600px 300px at 85% 20%, rgba(200, 84, 47, .07), transparent 70%),
+    var(--ink);
+  min-height: 100vh;
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .35;
+  background-image: radial-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px);
+  background-size: 3px 3px;
+  z-index: 1;
+}
+
+a { color: var(--marigold); text-decoration: none; }
+a:hover { text-decoration: underline; }
+code { font-family: var(--mono); font-size: .86em; color: var(--ash); }
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 24px 48px;
+  z-index: 2;
+}
+
+.papel { display: block; width: 100vw; height: 90px; margin-left: calc(50% - 50vw); }
+
+.eyebrow {
+  margin: 38px 0 6px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--marigold-deep);
+}
+
+h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(44px, 8vw, 86px);
+  line-height: .98;
+  letter-spacing: -.02em;
+  margin: 0 0 18px;
+}
+
+.lede { max-width: 640px; color: #cfc7b9; font-size: 18px; }
+.lede code { color: var(--bone); }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin: 42px 0 14px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.stats > div { background: var(--ink-2); padding: 18px 16px; }
+.stats b {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 34px;
+  color: var(--marigold);
+  line-height: 1.1;
+}
+.stats span { font-size: 12px; color: var(--ash); letter-spacing: .02em; }
+
+.modelnote { font-family: var(--mono); font-size: 11.5px; color: var(--ash); }
+
+/* ---------- sections ---------- */
+section { position: relative; z-index: 2; max-width: 1040px; margin: 0 auto; padding: 26px 24px; }
+h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 26px;
+  margin: 0 0 16px;
+  color: var(--bone);
+}
+h2::before { content: "✦ "; color: var(--marigold-deep); font-size: 14px; }
+
+.claim { font-size: 17px; color: #ded6c7; }
+.claim .ev {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink);
+  background: var(--marigold);
+  border-radius: 2px;
+  padding: 0 4px;
+  margin-left: 3px;
+  vertical-align: 2px;
+  cursor: help;
+}
+.claim.speculation { color: var(--violet); font-style: italic; }
+.refs { font-family: var(--mono); font-size: 10px; color: var(--ash); }
+
+.struck { color: #6d6460; font-size: 14px; }
+.struck .why { font-family: var(--mono); font-size: 10px; color: var(--marigold-deep); }
+.support { font-family: var(--mono); font-size: 9.5px; color: var(--ash); margin-left: 6px; white-space: nowrap; }
+.suggest { font-family: var(--mono); font-size: 11px; color: var(--violet); margin: 0 0 8px; }
+
+/* ---------- clusters ---------- */
+.cluster-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.cluster {
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(242, 163, 60, .05), transparent 60%), var(--ink-2);
+  padding: 16px 16px 14px;
+}
+.cluster h3 { margin: 0 0 6px; font-family: var(--serif); font-weight: 400; font-size: 19px; color: var(--marigold); }
+.cluster p { margin: 0 0 10px; font-size: 13.5px; color: #b9b1a4; }
+.cluster .count { font-family: var(--mono); font-size: 10px; color: var(--ash); }
+
+/* ---------- timeline ---------- */
+.timeline ul { list-style: none; margin: 0; padding: 0; }
+.timeline li {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 7px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 13px;
+}
+.timeline .date { font-family: var(--mono); color: var(--ash); }
+.timeline .bar {
+  display: block;
+  height: 6px;
+  width: var(--w);
+  max-width: 100%;
+  background: linear-gradient(90deg, var(--marigold-deep), var(--marigold));
+  opacity: .55;
+}
+.timeline li.mass .bar { opacity: 1; box-shadow: 0 0 14px rgba(242, 163, 60, .35); }
+.timeline li.mass .num { color: var(--marigold); }
+.timeline .num { font-family: var(--mono); font-size: 11px; color: var(--ash); white-space: nowrap; }
+
+/* ---------- grid of tombstones ---------- */
+.grid {
+  position: relative;
+  z-index: 2;
+  max-width: 1040px;
+  margin: 10px auto 0;
+  padding: 0 24px 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 18px;
+}
+
+.tomb {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: 86px 86px 6px 6px;
+  padding: 26px 20px 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .025), transparent 40%), var(--ink-2);
+  transition: transform .18s ease, border-color .18s ease;
+}
+.tomb:hover { transform: translateY(-3px); border-color: #4a3d2c; }
+.tomb.missing { border-style: dashed; opacity: .82; }
+.tomb.missing .sigil { color: var(--ash); }
+
+.tomb-art { height: 92px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+.tomb-art img {
+  max-height: 92px;
+  max-width: 100%;
+  border-radius: 3px;
+  filter: saturate(.85) contrast(1.02);
+}
+.sigil {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--marigold-deep);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+}
+
+.tomb h3 { margin: 0 0 4px; font-family: var(--serif); font-weight: 400; font-size: 19px; line-height: 1.25; }
+.tomb h3 a { color: var(--bone); }
+.tomb h3 a:hover { color: var(--marigold); text-decoration: none; }
+.tomb .meta { margin: 0 0 8px; font-family: var(--mono); font-size: 10.5px; color: var(--ash); }
+.tomb .label { margin: 0 0 10px; font-size: 12px; color: var(--marigold-deep); letter-spacing: .04em; text-transform: uppercase; }
+.tomb .epitaph { margin: 0 0 14px; font-size: 13.5px; color: #c4bcae; }
+.tomb .epitaph.quiet { color: #6d6460; font-style: italic; }
+.tomb .hypo { margin: 0 0 14px; font-size: 13px; color: #b3a8b8; }
+.tag {
+  display: block;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: 4px;
+}
+.tomb-foot { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .06em;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 8px;
+  color: var(--ash);
+}
+.chip.ghost { color: var(--marigold-deep); border-color: #3a2d20; }
+
+footer { position: relative; z-index: 2; max-width: 1040px; margin: 0 auto; padding: 30px 24px 60px; color: #6d6460; font-size: 12.5px; border-top: 1px solid var(--line); }
+
+/* ---------- detail ---------- */
+body.detail { max-width: 820px; margin: 0 auto; padding: 30px 22px 80px; }
+.back { font-family: var(--mono); font-size: 12px; }
+.detail-head h1 { font-size: clamp(30px, 6vw, 52px); word-break: break-word; }
+.died { font-family: var(--mono); font-size: 12px; color: var(--marigold-deep); }
+.preview { margin: 26px 0; }
+.preview img { max-width: 100%; border: 1px solid var(--line); border-radius: 4px; }
+.preview iframe { width: 100%; height: 520px; border: 1px solid var(--line); background: #fff; }
+.preview audio { width: 100%; }
+.epitaph-block .claim { font-size: 18px; }
+.evidence table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.evidence th, .evidence td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.evidence th { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ash); }
+.evidence td { font-family: var(--mono); color: #c4bcae; }
+.evidence .eid { color: var(--marigold); }
+.excerpt pre { white-space: pre-wrap; font-family: var(--mono); font-size: 12.5px; background: var(--ink-2); border: 1px solid var(--line); padding: 14px; color: #c4bcae; }
+.raw dl { display: grid; grid-template-columns: 130px 1fr; gap: 6px 14px; font-size: 12px; }
+.raw dt { color: var(--ash); font-family: var(--mono); }
+.raw dd { margin: 0; word-break: break-all; }
+.hypo-block { border-left: 2px solid var(--violet); padding-left: 16px; }
+
+@media (max-width: 640px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .timeline li { grid-template-columns: 92px 1fr; }
+  .timeline .num { grid-column: 2; }
+}

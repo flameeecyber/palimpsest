@@ -1,0 +1,1172 @@
+{
+  "target": "sample/ghost.img",
+  "created_at": "2026-10-27T16:35:43+00:00",
+  "artifacts": [
+    {
+      "id": "2f3dfa31df",
+      "recovered_path": "out-temporal/recovered/18_DCIM_IMG_2019_0006.png",
+      "kind": "photo",
+      "original_name": "IMG_2019_0006.png",
+      "inode": "18",
+      "size": 90933,
+      "sha256": "ca28a92cf0254eb943c92f51d97cf062a7b7456b6dce22fe978a732e25ddf723",
+      "deleted_at": "2026-10-27T07:34:32",
+      "modified_at": "2019-06-20T18:28:01",
+      "created_at": "2019-06-20T18:28:01",
+      "exif": {
+        "parent": "DCIM",
+        "DateTimeOriginal": "2019-06-20T18:28:01",
+        "CreateDate": "2019-06-20T18:28:01",
+        "Make": "Apple",
+        "Model": "iPhone 8",
+        "GPSLatitude": 51.5134,
+        "GPSLongitude": 0.1338,
+        "ImageWidth": 640,
+        "ImageHeight": 480,
+        "MIMEType": "image/png",
+        "FileType": "PNG"
+      },
+      "text_excerpt": null,
+      "evidence": [
+        {
+          "id": "E1",
+          "source": "filename",
+          "value": "IMG_2019_0006.png",
+          "note": ""
+        },
+        {
+          "id": "E2",
+          "source": "kind",
+          "value": "photo",
+          "note": ""
+        },
+        {
+          "id": "E3",
+          "source": "size",
+          "value": "90933 bytes",
+          "note": ""
+        },
+        {
+          "id": "E4",
+          "source": "created",
+          "value": "2019-06-20T18:28:01",
+          "note": ""
+        },
+        {
+          "id": "E5",
+          "source": "modified",
+          "value": "2019-06-20T18:28:01",
+          "note": ""
+        },
+        {
+          "id": "E6",
+          "source": "deleted",
+          "value": "2026-10-27T07:34:32",
+          "note": ""
+        },
+        {
+          "id": "E7",
+          "source": "camera",
+          "value": "iPhone 8",
+          "note": ""
+        },
+        {
+          "id": "E8",
+          "source": "latitude",
+          "value": "51.5134",
+          "note": ""
+        },
+        {
+          "id": "E9",
+          "source": "longitude",
+          "value": "0.1338",
+          "note": ""
+        }
+      ],
+      "claims": [
+        {
+          "text": "IMG_2019_0006.png is a photo of 90933 bytes.",
+          "evidence": [
+            "E1",
+            "E2",
+            "E3"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        },
+        {
+          "text": "Its last recorded modification is 2019-06-20T18:28:01.",
+          "evidence": [
+            "E5"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        },
+        {
+          "text": "It was deleted at 2026-10-27T07:34:32.",
+          "evidence": [
+            "E6"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        }
+      ],
+      "recovery_method": "metadata",
+      "narration_model": null,
+      "triage": {},
+      "cluster": null,
+      "cluster_id": null,
+      "missing": false,
+      "hypothesis": null,
+      "hypothesis_confidence": null,
+      "suggested_name": null
+    },
+    {
+      "id": "59125a46a8",
+      "recovered_path": "out-temporal/recovered/19_DCIM_IMG_2019_0009.png",
+      "kind": "photo",
+      "original_name": "IMG_2019_0009.png",
+      "inode": "19",
+      "size": 105094,
+      "sha256": "17b4084d7473e844bbf5c6fe1e1399b7048fef8e2bbb4a26dc4a88b947510593",
+      "deleted_at": "2026-10-27T07:34:32",
+      "modified_at": "2019-06-23T18:31:01",
+      "created_at": "2019-06-23T18:31:01",
+      "exif": {
+        "parent": "DCIM",
+        "DateTimeOriginal": "2019-06-23T18:31:01",
+        "CreateDate": "2019-06-23T18:31:01",
+        "Make": "Apple",
+        "Model": "iPhone 8",
+        "GPSLatitude": 51.5164,
+        "GPSLongitude": 0.1368,
+        "ImageWidth": 640,
+        "ImageHeight": 480,
+        "MIMEType": "image/png",
+        "FileType": "PNG"
+      },
+      "text_excerpt": null,
+      "evidence": [
+        {
+          "id": "E1",
+          "source": "filename",
+          "value": "IMG_2019_0009.png",
+          "note": ""
+        },
+        {
+          "id": "E2",
+          "source": "kind",
+          "value": "photo",
+          "note": ""
+        },
+        {
+          "id": "E3",
+          "source": "size",
+          "value": "105094 bytes",
+          "note": ""
+        },
+        {
+          "id": "E4",
+          "source": "created",
+          "value": "2019-06-23T18:31:01",
+          "note": ""
+        },
+        {
+          "id": "E5",
+          "source": "modified",
+          "value": "2019-06-23T18:31:01",
+          "note": ""
+        },
+        {
+          "id": "E6",
+          "source": "deleted",
+          "value": "2026-10-27T07:34:32",
+          "note": ""
+        },
+        {
+          "id": "E7",
+          "source": "camera",
+          "value": "iPhone 8",
+          "note": ""
+        },
+        {
+          "id": "E8",
+          "source": "latitude",
+          "value": "51.5164",
+          "note": ""
+        },
+        {
+          "id": "E9",
+          "source": "longitude",
+          "value": "0.1368",
+          "note": ""
+        }
+      ],
+      "claims": [
+        {
+          "text": "IMG_2019_0009.png is a photo of 105094 bytes.",
+          "evidence": [
+            "E1",
+            "E2",
+            "E3"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        },
+        {
+          "text": "Its last recorded modification is 2019-06-23T18:31:01.",
+          "evidence": [
+            "E5"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        },
+        {
+          "text": "It was deleted at 2026-10-27T07:34:32.",
+          "evidence": [
+            "E6"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        }
+      ],
+      "recovery_method": "metadata",
+      "narration_model": null,
+      "triage": {},
+      "cluster": null,
+      "cluster_id": null,
+      "missing": false,
+      "hypothesis": null,
+      "hypothesis_confidence": null,
+      "suggested_name": null
+    },
+    {
+      "id": "cadaa85ef6",
+      "recovered_path": "out-temporal/recovered/20_DCIM_IMG_2020_0001.png",
+      "kind": "photo",
+      "original_name": "IMG_2020_0001.png",
+      "inode": "20",
+      "size": 102240,
+      "sha256": "6f83d621673e1a027840f12d52f7b539d56f83832fa06755ed0e8f12b224b504",
+      "deleted_at": "2026-10-27T07:34:32",
+      "modified_at": "2019-06-15T18:23:01",
+      "created_at": "2019-06-15T18:23:01",
+      "exif": {
+        "parent": "DCIM",
+        "DateTimeOriginal": "2019-06-15T18:23:01",
+        "CreateDate": "2019-06-15T18:23:01",
+        "Make": "Apple",
+        "Model": "iPhone 8",
+        "GPSLatitude": 51.5084,
+        "GPSLongitude": 0.1288,
+        "ImageWidth": 640,
+        "ImageHeight": 480,
+        "MIMEType": "image/png",
+        "FileType": "PNG"
+      },
+      "text_excerpt": null,
+      "evidence": [
+        {
+          "id": "E1",
+          "source": "filename",
+          "value": "IMG_2020_0001.png",
+          "note": ""
+        },
+        {
+          "id": "E2",
+          "source": "kind",
+          "value": "photo",
+          "note": ""
+        },
+        {
+          "id": "E3",
+          "source": "size",
+          "value": "102240 bytes",
+          "note": ""
+        },
+        {
+          "id": "E4",
+          "source": "created",
+          "value": "2019-06-15T18:23:01",
+          "note": ""
+        },
+        {
+          "id": "E5",
+          "source": "modified",
+          "value": "2019-06-15T18:23:01",
+          "note": ""
+        },
+        {
+          "id": "E6",
+          "source": "deleted",
+          "value": "2026-10-27T07:34:32",
+          "note": ""
+        },
+        {
+          "id": "E7",
+          "source": "camera",
+          "value": "iPhone 8",
+          "note": ""
+        },
+        {
+          "id": "E8",
+          "source": "latitude",
+          "value": "51.5084",
+          "note": ""
+        },
+        {
+          "id": "E9",
+          "source": "longitude",
+          "value": "0.1288",
+          "note": ""
+        }
+      ],
+      "claims": [
+        {
+          "text": "IMG_2020_0001.png is a photo of 102240 bytes.",
+          "evidence": [
+            "E1",
+            "E2",
+            "E3"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        },
+        {
+          "text": "Its last recorded modification is 2019-06-15T18:23:01.",
+          "evidence": [
+            "E5"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        },
+        {
+          "text": "It was deleted at 2026-10-27T07:34:32.",
+          "evidence": [
+            "E6"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        }
+      ],
+      "recovery_method": "metadata",
+      "narration_model": null,
+      "triage": {},
+      "cluster": null,
+      "cluster_id": null,
+      "missing": false,
+      "hypothesis": null,
+      "hypothesis_confidence": null,
+      "suggested_name": null
+    },
+    {
+      "id": "78294c9b10",
+      "recovered_path": "out-temporal/recovered/21_DCIM_IMG_2020_0004.png",
+      "kind": "photo",
+      "original_name": "IMG_2020_0004.png",
+      "inode": "21",
+      "size": 103608,
+      "sha256": "584c4f8ee8c1b2d2cb341942a70be5becfa58799169ea4e48cd73793cbf55fc7",
+      "deleted_at": "2026-10-27T07:34:32",
+      "modified_at": "2019-06-18T18:26:01",
+      "created_at": "2019-06-18T18:26:01",
+      "exif": {
+        "parent": "DCIM",
+        "DateTimeOriginal": "2019-06-18T18:26:01",
+        "CreateDate": "2019-06-18T18:26:01",
+        "Make": "Apple",
+        "Model": "iPhone 8",
+        "GPSLatitude": 51.5114,
+        "GPSLongitude": 0.1318,
+        "ImageWidth": 640,
+        "ImageHeight": 480,
+        "MIMEType": "image/png",
+        "FileType": "PNG"
+      },
+      "text_excerpt": null,
+      "evidence": [
+        {
+          "id": "E1",
+          "source": "filename",
+          "value": "IMG_2020_0004.png",
+          "note": ""
+        },
+        {
+          "id": "E2",
+          "source": "kind",
+          "value": "photo",
+          "note": ""
+        },
+        {
+          "id": "E3",
+          "source": "size",
+          "value": "103608 bytes",
+          "note": ""
+        },
+        {
+          "id": "E4",
+          "source": "created",
+          "value": "2019-06-18T18:26:01",
+          "note": ""
+        },
+        {
+          "id": "E5",
+          "source": "modified",
+          "value": "2019-06-18T18:26:01",
+          "note": ""
+        },
+        {
+          "id": "E6",
+          "source": "deleted",
+          "value": "2026-10-27T07:34:32",
+          "note": ""
+        },
+        {
+          "id": "E7",
+          "source": "camera",
+          "value": "iPhone 8",
+          "note": ""
+        },
+        {
+          "id": "E8",
+          "source": "latitude",
+          "value": "51.5114",
+          "note": ""
+        },
+        {
+          "id": "E9",
+          "source": "longitude",
+          "value": "0.1318",
+          "note": ""
+        }
+      ],
+      "claims": [
+        {
+          "text": "IMG_2020_0004.png is a photo of 103608 bytes.",
+          "evidence": [
+            "E1",
+            "E2",
+            "E3"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        },
+        {
+          "text": "Its last recorded modification is 2019-06-18T18:26:01.",
+          "evidence": [
+            "E5"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        },
+        {
+          "text": "It was deleted at 2026-10-27T07:34:32.",
+          "evidence": [
+            "E6"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        }
+      ],
+      "recovery_method": "metadata",
+      "narration_model": null,
+      "triage": {},
+      "cluster": null,
+      "cluster_id": null,
+      "missing": false,
+      "hypothesis": null,
+      "hypothesis_confidence": null,
+      "suggested_name": null
+    },
+    {
+      "id": "fb343c5bd6",
+      "recovered_path": "out-temporal/recovered/22_DCIM_IMG_2020_0007.png",
+      "kind": "photo",
+      "original_name": "IMG_2020_0007.png",
+      "inode": "22",
+      "size": 125122,
+      "sha256": "f593b9e99cc55080443c8032865f07fda26818da386631de1c0777ba536b7df6",
+      "deleted_at": "2026-10-27T07:34:32",
+      "modified_at": "2019-06-21T18:29:01",
+      "created_at": "2019-06-21T18:29:01",
+      "exif": {
+        "parent": "DCIM",
+        "DateTimeOriginal": "2019-06-21T18:29:01",
+        "CreateDate": "2019-06-21T18:29:01",
+        "Make": "Apple",
+        "Model": "iPhone 8",
+        "GPSLatitude": 51.5144,
+        "GPSLongitude": 0.1348,
+        "ImageWidth": 640,
+        "ImageHeight": 480,
+        "MIMEType": "image/png",
+        "FileType": "PNG"
+      },
+      "text_excerpt": null,
+      "evidence": [
+        {
+          "id": "E1",
+          "source": "filename",
+          "value": "IMG_2020_0007.png",
+          "note": ""
+        },
+        {
+          "id": "E2",
+          "source": "kind",
+          "value": "photo",
+          "note": ""
+        },
+        {
+          "id": "E3",
+          "source": "size",
+          "value": "125122 bytes",
+          "note": ""
+        },
+        {
+          "id": "E4",
+          "source": "created",
+          "value": "2019-06-21T18:29:01",
+          "note": ""
+        },
+        {
+          "id": "E5",
+          "source": "modified",
+          "value": "2019-06-21T18:29:01",
+          "note": ""
+        },
+        {
+          "id": "E6",
+          "source": "deleted",
+          "value": "2026-10-27T07:34:32",
+          "note": ""
+        },
+        {
+          "id": "E7",
+          "source": "camera",
+          "value": "iPhone 8",
+          "note": ""
+        },
+        {
+          "id": "E8",
+          "source": "latitude",
+          "value": "51.5144",
+          "note": ""
+        },
+        {
+          "id": "E9",
+          "source": "longitude",
+          "value": "0.1348",
+          "note": ""
+        }
+      ],
+      "claims": [
+        {
+          "text": "IMG_2020_0007.png is a photo of 125122 bytes.",
+          "evidence": [
+            "E1",
+            "E2",
+            "E3"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        },
+        {
+          "text": "Its last recorded modification is 2019-06-21T18:29:01.",
+          "evidence": [
+            "E5"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        },
+        {
+          "text": "It was deleted at 2026-10-27T07:34:32.",
+          "evidence": [
+            "E6"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        }
+      ],
+      "recovery_method": "metadata",
+      "narration_model": null,
+      "triage": {},
+      "cluster": null,
+      "cluster_id": null,
+      "missing": false,
+      "hypothesis": null,
+      "hypothesis_confidence": null,
+      "suggested_name": null
+    },
+    {
+      "id": "c3d3c9aebb",
+      "recovered_path": "out-temporal/recovered/23_DCIM_IMG_2021_0002.png",
+      "kind": "photo",
+      "original_name": "IMG_2021_0002.png",
+      "inode": "23",
+      "size": 106827,
+      "sha256": "953721bcc5acbb4af45a833b0f1099e6c7d911f78382813a306121e1b64c269f",
+      "deleted_at": "2026-10-27T07:34:32",
+      "modified_at": "2019-06-16T18:24:01",
+      "created_at": "2019-06-16T18:24:01",
+      "exif": {
+        "parent": "DCIM",
+        "DateTimeOriginal": "2019-06-16T18:24:01",
+        "CreateDate": "2019-06-16T18:24:01",
+        "Make": "Apple",
+        "Model": "iPhone 8",
+        "GPSLatitude": 51.5094,
+        "GPSLongitude": 0.1298,
+        "ImageWidth": 640,
+        "ImageHeight": 480,
+        "MIMEType": "image/png",
+        "FileType": "PNG"
+      },
+      "text_excerpt": null,
+      "evidence": [
+        {
+          "id": "E1",
+          "source": "filename",
+          "value": "IMG_2021_0002.png",
+          "note": ""
+        },
+        {
+          "id": "E2",
+          "source": "kind",
+          "value": "photo",
+          "note": ""
+        },
+        {
+          "id": "E3",
+          "source": "size",
+          "value": "106827 bytes",
+          "note": ""
+        },
+        {
+          "id": "E4",
+          "source": "created",
+          "value": "2019-06-16T18:24:01",
+          "note": ""
+        },
+        {
+          "id": "E5",
+          "source": "modified",
+          "value": "2019-06-16T18:24:01",
+          "note": ""
+        },
+        {
+          "id": "E6",
+          "source": "deleted",
+          "value": "2026-10-27T07:34:32",
+          "note": ""
+        },
+        {
+          "id": "E7",
+          "source": "camera",
+          "value": "iPhone 8",
+          "note": ""
+        },
+        {
+          "id": "E8",
+          "source": "latitude",
+          "value": "51.5094",
+          "note": ""
+        },
+        {
+          "id": "E9",
+          "source": "longitude",
+          "value": "0.1298",
+          "note": ""
+        }
+      ],
+      "claims": [
+        {
+          "text": "IMG_2021_0002.png is a photo of 106827 bytes.",
+          "evidence": [
+            "E1",
+            "E2",
+            "E3"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        },
+        {
+          "text": "Its last recorded modification is 2019-06-16T18:24:01.",
+          "evidence": [
+            "E5"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        },
+        {
+          "text": "It was deleted at 2026-10-27T07:34:32.",
+          "evidence": [
+            "E6"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        }
+      ],
+      "recovery_method": "metadata",
+      "narration_model": null,
+      "triage": {},
+      "cluster": null,
+      "cluster_id": null,
+      "missing": false,
+      "hypothesis": null,
+      "hypothesis_confidence": null,
+      "suggested_name": null
+    },
+    {
+      "id": "354d37b9ee",
+      "recovered_path": "out-temporal/recovered/24_DCIM_IMG_2021_0005.png",
+      "kind": "photo",
+      "original_name": "IMG_2021_0005.png",
+      "inode": "24",
+      "size": 93069,
+      "sha256": "5fc1cf1bd7508b2ee058caccd23f83efd80bb37a993c41a92c95cf559d7844dc",
+      "deleted_at": "2026-10-27T07:34:32",
+      "modified_at": "2019-06-19T18:27:01",
+      "created_at": "2019-06-19T18:27:01",
+      "exif": {
+        "parent": "DCIM",
+        "DateTimeOriginal": "2019-06-19T18:27:01",
+        "CreateDate": "2019-06-19T18:27:01",
+        "Make": "Apple",
+        "Model": "iPhone 8",
+        "GPSLatitude": 51.5124,
+        "GPSLongitude": 0.1328,
+        "ImageWidth": 640,
+        "ImageHeight": 480,
+        "MIMEType": "image/png",
+        "FileType": "PNG"
+      },
+      "text_excerpt": null,
+      "evidence": [
+        {
+          "id": "E1",
+          "source": "filename",
+          "value": "IMG_2021_0005.png",
+          "note": ""
+        },
+        {
+          "id": "E2",
+          "source": "kind",
+          "value": "photo",
+          "note": ""
+        },
+        {
+          "id": "E3",
+          "source": "size",
+          "value": "93069 bytes",
+          "note": ""
+        },
+        {
+          "id": "E4",
+          "source": "created",
+          "value": "2019-06-19T18:27:01",
+          "note": ""
+        },
+        {
+          "id": "E5",
+          "source": "modified",
+          "value": "2019-06-19T18:27:01",
+          "note": ""
+        },
+        {
+          "id": "E6",
+          "source": "deleted",
+          "value": "2026-10-27T07:34:32",
+          "note": ""
+        },
+        {
+          "id": "E7",
+          "source": "camera",
+          "value": "iPhone 8",
+          "note": ""
+        },
+        {
+          "id": "E8",
+          "source": "latitude",
+          "value": "51.5124",
+          "note": ""
+        },
+        {
+          "id": "E9",
+          "source": "longitude",
+          "value": "0.1328",
+          "note": ""
+        }
+      ],
+      "claims": [
+        {
+          "text": "IMG_2021_0005.png is a photo of 93069 bytes.",
+          "evidence": [
+            "E1",
+            "E2",
+            "E3"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        },
+        {
+          "text": "Its last recorded modification is 2019-06-19T18:27:01.",
+          "evidence": [
+            "E5"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        },
+        {
+          "text": "It was deleted at 2026-10-27T07:34:32.",
+          "evidence": [
+            "E6"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        }
+      ],
+      "recovery_method": "metadata",
+      "narration_model": null,
+      "triage": {},
+      "cluster": null,
+      "cluster_id": null,
+      "missing": false,
+      "hypothesis": null,
+      "hypothesis_confidence": null,
+      "suggested_name": null
+    },
+    {
+      "id": "cb023cb531",
+      "recovered_path": "out-temporal/recovered/25_DCIM_IMG_2021_0008.png",
+      "kind": "photo",
+      "original_name": "IMG_2021_0008.png",
+      "inode": "25",
+      "size": 90544,
+      "sha256": "4e383fe3814939fc8fb59d57cba23e7972d11235b5ea56488e85f6dd5aaccbe8",
+      "deleted_at": "2026-10-27T07:34:32",
+      "modified_at": "2019-06-22T18:30:01",
+      "created_at": "2019-06-22T18:30:01",
+      "exif": {
+        "parent": "DCIM",
+        "DateTimeOriginal": "2019-06-22T18:30:01",
+        "CreateDate": "2019-06-22T18:30:01",
+        "Make": "Apple",
+        "Model": "iPhone 8",
+        "GPSLatitude": 51.5154,
+        "GPSLongitude": 0.1358,
+        "ImageWidth": 640,
+        "ImageHeight": 480,
+        "MIMEType": "image/png",
+        "FileType": "PNG"
+      },
+      "text_excerpt": null,
+      "evidence": [
+        {
+          "id": "E1",
+          "source": "filename",
+          "value": "IMG_2021_0008.png",
+          "note": ""
+        },
+        {
+          "id": "E2",
+          "source": "kind",
+          "value": "photo",
+          "note": ""
+        },
+        {
+          "id": "E3",
+          "source": "size",
+          "value": "90544 bytes",
+          "note": ""
+        },
+        {
+          "id": "E4",
+          "source": "created",
+          "value": "2019-06-22T18:30:01",
+          "note": ""
+        },
+        {
+          "id": "E5",
+          "source": "modified",
+          "value": "2019-06-22T18:30:01",
+          "note": ""
+        },
+        {
+          "id": "E6",
+          "source": "deleted",
+          "value": "2026-10-27T07:34:32",
+          "note": ""
+        },
+        {
+          "id": "E7",
+          "source": "camera",
+          "value": "iPhone 8",
+          "note": ""
+        },
+        {
+          "id": "E8",
+          "source": "latitude",
+          "value": "51.5154",
+          "note": ""
+        },
+        {
+          "id": "E9",
+          "source": "longitude",
+          "value": "0.1358",
+          "note": ""
+        }
+      ],
+      "claims": [
+        {
+          "text": "IMG_2021_0008.png is a photo of 90544 bytes.",
+          "evidence": [
+            "E1",
+            "E2",
+            "E3"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        },
+        {
+          "text": "Its last recorded modification is 2019-06-22T18:30:01.",
+          "evidence": [
+            "E5"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        },
+        {
+          "text": "It was deleted at 2026-10-27T07:34:32.",
+          "evidence": [
+            "E6"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        }
+      ],
+      "recovery_method": "metadata",
+      "narration_model": null,
+      "triage": {},
+      "cluster": null,
+      "cluster_id": null,
+      "missing": false,
+      "hypothesis": null,
+      "hypothesis_confidence": null,
+      "suggested_name": null
+    },
+    {
+      "id": "b81c5c8508",
+      "recovered_path": "out-temporal/recovered/26_Documents_2021_letter.txt",
+      "kind": "document",
+      "original_name": "letter.txt",
+      "inode": "26",
+      "size": 208,
+      "sha256": "c2468e4617f7251dbf3233b1878735616515ad5579b67b5fbaa21e81ef130394",
+      "deleted_at": "2026-10-27T07:34:32",
+      "modified_at": null,
+      "created_at": null,
+      "exif": {
+        "parent": "Documents/2021",
+        "MIMEType": "text/plain",
+        "FileType": "TXT"
+      },
+      "text_excerpt": "Mum,\n\nI found the box of photographs in the hall cupboard, the ones from the summer\nwe drove to the coast. I am keeping the one of you by the blue door.\n\nI will come down on the 14th. Do not wait up.\n\n— J.",
+      "evidence": [
+        {
+          "id": "E1",
+          "source": "filename",
+          "value": "letter.txt",
+          "note": ""
+        },
+        {
+          "id": "E2",
+          "source": "kind",
+          "value": "document",
+          "note": ""
+        },
+        {
+          "id": "E3",
+          "source": "size",
+          "value": "208 bytes",
+          "note": ""
+        },
+        {
+          "id": "E4",
+          "source": "deleted",
+          "value": "2026-10-27T07:34:32",
+          "note": ""
+        },
+        {
+          "id": "E5",
+          "source": "content",
+          "value": "Mum,\n\nI found the box of photographs in the hall cupboard, the ones from the summer\nwe drove to the coast. I am keeping the one of you by the blue door.\n\nI will come down on the 14th. Do not wait up.\n\n— J.",
+          "note": ""
+        }
+      ],
+      "claims": [
+        {
+          "text": "letter.txt is a document of 208 bytes.",
+          "evidence": [
+            "E1",
+            "E2",
+            "E3"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        },
+        {
+          "text": "It was deleted at 2026-10-27T07:34:32.",
+          "evidence": [
+            "E4"
+          ],
+          "confidence": "certain",
+          "struck": false,
+          "reason": "",
+          "support": 1.0,
+          "auto_cited": []
+        }
+      ],
+      "recovery_method": "metadata",
+      "narration_model": null,
+      "triage": {},
+      "cluster": null,
+      "cluster_id": null,
+      "missing": false,
+      "hypothesis": null,
+      "hypothesis_confidence": null,
+      "suggested_name": null
+    },
+    {
+      "id": "0343d28351",
+      "recovered_path": "",
+      "kind": "photo",
+      "original_name": "IMG_2019_0000.png",
+      "inode": "16",
+      "size": 0,
+      "sha256": "",
+      "deleted_at": "2026-10-27T07:34:32",
+      "modified_at": null,
+      "created_at": null,
+      "exif": {
+        "parent": "DCIM"
+      },
+      "text_excerpt": null,
+      "evidence": [],
+      "claims": [],
+      "recovery_method": "metadata-missing",
+      "narration_model": null,
+      "triage": {},
+      "cluster": null,
+      "cluster_id": null,
+      "missing": true,
+      "hypothesis": null,
+      "hypothesis_confidence": null,
+      "suggested_name": null
+    },
+    {
+      "id": "6e82e87c54",
+      "recovered_path": "",
+      "kind": "photo",
+      "original_name": "IMG_2019_0003.png",
+      "inode": "17",
+      "size": 0,
+      "sha256": "",
+      "deleted_at": "2026-10-27T07:34:32",
+      "modified_at": null,
+      "created_at": null,
+      "exif": {
+        "parent": "DCIM"
+      },
+      "text_excerpt": null,
+      "evidence": [],
+      "claims": [],
+      "recovery_method": "metadata-missing",
+      "narration_model": null,
+      "triage": {},
+      "cluster": null,
+      "cluster_id": null,
+      "missing": true,
+      "hypothesis": null,
+      "hypothesis_confidence": null,
+      "suggested_name": null
+    }
+  ],
+  "notes": {
+    "case_claims": []
+  }
+}

@@ -1,0 +1,66 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # sleuthkit gives us fls/icat/istat; e2fsprogs gives us mkfs.ext4 and
+      # debugfs; the rest are the optional enrichers. No Ollama: this job runs
+      # the no-model path, which is the baseline the ablation compares against.
+      - name: Install forensic tooling
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            sleuthkit e2fsprogs libimage-exiftool-perl poppler-utils foremost
+
+      - name: Install Python package
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Compile
+        run: python -m compileall -q src
+
+      - name: Unit tests
+        run: pytest -q
+
+      # End to end on a generated 128 MB ext4 image. This proves the sample is
+      # reproducible without root, a loop device, or a mount, and that the
+      # offline path still renders a site and verifies its own manifest.
+      - name: Build sample image
+        run: ./scripts/make_sample_image.sh
+
+      - name: Recover without a model
+        run: python -m palimpsest run sample/ghost.img --out out-offline --no-llm
+
+      - name: Verify chain of custody
+        run: python -m palimpsest verify --out out-offline
+
+      - name: Check the site was written
+        run: |
+          test -f out-offline/site/index.html
+          test -f out-offline/case.json
+          test -f out-offline/manifest.json
+          grep -q "palimpsest" out-offline/site/index.html
+
+      - name: Upload the case
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: offline-case
+          path: out-offline/
+          retention-days: 7
