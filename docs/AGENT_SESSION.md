@@ -164,7 +164,7 @@ Recording this matters more than recording what worked.
 - Prompt processing on this CPU: 3.7 tokens/second. A 1,260-token prompt is
   342 seconds of pure prefill before the first output token exists.
 - Cache hit: 0 s.
-- Test suite: 37 tests, ~1.3 s, no model, no disk image.
+- Test suite: 40 tests, ~1.3 s, no model, no disk image.
 
 ## 8. What the agent did not do
 

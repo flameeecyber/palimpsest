@@ -95,7 +95,7 @@ What is actually implemented:
 | Validator-in-the-loop | rejected sentences are fed back once; the best attempt wins |
 | Reproducibility | content-addressed cache, prompt hashes, tool versions, `verify` |
 | Durability | seven Temporal activities, heartbeats, a manifest written by the workflow |
-| Tests | 35 tests, no model or disk image required |
+| Tests | 40 tests, no model or disk image required |
 | CI | compile, tests, offline end-to-end run on a generated image |
 | Offline UI | static HTML/CSS, no JS, no CDN, media copied locally |
 

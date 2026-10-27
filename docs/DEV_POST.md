@@ -57,9 +57,13 @@ writing evidence-bound epitaphs
 case written to out/site
 ```
 
+![The rendered case: nine tombstones, two of them hollow](https://raw.githubusercontent.com/flameeecyber/palimpsest/main/docs/screenshots/case.png)
+
+*The rendered case. The two dashed stones at the bottom are files that provably existed and did not come back.*
+
 ## Code
 
-**[github.com/flameeecyber/palimpsest](https://github.com/flameeecyber/palimpsest)** — MIT, Python 3.11+, 35 tests that need no model and no disk image.
+**[github.com/flameeecyber/palimpsest](https://github.com/flameeecyber/palimpsest)** — MIT, Python 3.11+, 40 tests that need no model and no disk image.
 
 ```
 src/palimpsest/
@@ -147,6 +151,10 @@ struck = [c for c in claims if c.struck]
 Then the loop feeds the rejection back to the model, once, with the exact strike reason. The second attempt usually quotes the evidence instead of inventing around it. The best attempt wins. That retry loop is the difference between a demo and something that holds up when the model is having a bad day.
 
 One repair sits before the checks, because the model kept making the same bookkeeping mistake: it would write *"IMG_2021_0002.png was created on 2019-06-16T18:24:01 with an iPhone 8"* and cite the filename and the camera, skipping the row that held the timestamp. The year check struck it — correctly, since the cited rows did not contain the date — and the retry frequently repeated it. `complete_citations()` now runs first: if a sentence quotes a timestamp character for character, the row containing it is added to the citation and recorded on the claim as `auto_cited`, so the report never pretends the model cited it. An invented year still dies, because no row contains it. The repair fixes bookkeeping; it cannot manufacture support.
+
+![The letter's page: each sentence with the evidence ids behind it](https://raw.githubusercontent.com/flameeecyber/palimpsest/main/docs/screenshots/letter.png)
+
+*The letter's page. Two sentences, five evidence rows, and the percentage is the support score — how much of each sentence is actually in what it cites.*
 
 I want to be precise about what this is: **lexical overlap is a tripwire, not entailment.** A fluent sentence can reuse the right nouns and still be wrong. The defence is layered — the prompt forbids invented relations, the support score catches the crude cases, `verify` re-checks later, and the UI labels speculation differently. It is not a proof. It is a documented, reproducible filter, which is more than most generated text gets.
 
