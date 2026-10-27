@@ -24,7 +24,7 @@ from typing import Any
 
 from . import ablate as ablate_mod
 from . import manifest as manifest_mod
-from .cli import Store
+from .store import Store
 from .models import Artifact, Case
 
 # ---- palette ----------------------------------------------------------
