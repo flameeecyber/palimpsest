@@ -31,9 +31,12 @@ Writing decisions:
 
 - No "in this article we will explore". Start with the letter.
 - Every technical claim has a number, a command, or a file path behind it.
-- The failure is included: a 1B model cited a filename for a claim about a
-  sunset, and the validator struck it. That is the most credible paragraph in
-  the post.
+- The failure is included twice: a 1B model cited a filename for a claim about
+  a sunset and the validator struck it, and the query stage shipped with no
+  check at all until its first answer called four photographs "all created on
+  June 20th" when one of them was. Both failures end in a code change, not a
+  promise. The second one is the better paragraph, because it is a mistake the
+  project's own thesis should have prevented.
 - The limits section is not buried. Encrypted disks, TRIM'd SSDs and lexical
   support checking are stated plainly.
 
@@ -91,11 +94,11 @@ What is actually implemented:
 | Deletion timestamps | ext4 `dtime` parsed from `istat`, not file mtime |
 | Unrecoverable-file accounting | `missing` artifacts with name, size, parent and deletion time |
 | Five model stages | triage, link, infer, narrate, query — each with a no-model fallback |
-| Grounding | citation existence, lexical support, year check, struck-claim UI |
+| Grounding | citation existence, lexical support, year check, quantifier check on answers, struck-claim UI |
 | Validator-in-the-loop | rejected sentences are fed back once; the best attempt wins |
 | Reproducibility | content-addressed cache, prompt hashes, tool versions, `verify` |
 | Durability | seven Temporal activities, heartbeats, a manifest written by the workflow |
-| Tests | 40 tests, no model or disk image required |
+| Tests | 49 tests, no model or disk image required |
 | CI | compile, tests, offline end-to-end run on a generated image |
 | Offline UI | static HTML/CSS, no JS, no CDN, media copied locally |
 

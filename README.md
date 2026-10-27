@@ -66,7 +66,7 @@ a chatbot taped to it. Remove the model and five things disappear:
 | **Link** (`link.py`) | Embeds every description locally, clusters by meaning, names each cluster the way a person would label a box | a flat list with no story |
 | **Infer** (`infer.py`) | For files whose blocks are gone: name + size + timestamp + neighbours → a labelled hypothesis | those files vanish from the report |
 | **Narrate** (`narrate.py`) | Writes evidence-bound prose, then a validator strikes every sentence without a source | a metadata table |
-| **Query** (`query.py`) | "What died the night of August 14?" → retrieval + an answer with artifact citations | `grep` |
+| **Query** (`query.py`) | "What died the night of August 14?" → retrieval + an answer where every sentence cites an artifact and every date is checked against it | `grep` |
 
 And the model changes *which* files get attention: `select_for_narration()` uses
 the triage score, so a screenshot of a login page is skipped while a photograph
@@ -161,6 +161,12 @@ Ask the case a question:
 PYTHONPATH=src .venv/bin/python -m palimpsest ask \
   "What was deleted in the same batch as the letter?" --out out
 ```
+
+The answer is checked sentence by sentence. A sentence with no artifact id, an
+invented size, a date that is not in the cited file, or a universal claim
+("*all* four were taken on...") that only holds for one of them is struck and
+never printed as the answer. Struck sentences are shown below it, with the
+reason.
 
 Re-check the case:
 
@@ -284,7 +290,7 @@ src/palimpsest/
 prompts/         editable markdown: triage, cluster, infer, epitaph, case, query, name
 scripts/         sample image builder, placeholder photo generator
 templates/       Jinja2 + one CSS file, fully offline
-tests/           40 tests, no model required
+tests/           49 tests, no model required
 docs/            architecture, judging notes, demo script, agent session notes
 ```
 
@@ -293,7 +299,7 @@ docs/            architecture, judging notes, demo script, agent session notes
 ## Tests
 
 ```bash
-make test        # 40 tests, no Ollama, no disk image
+make test        # 49 tests, no Ollama, no disk image
 ```
 
 The tests cover the parts that must not depend on a model: `fls` parsing,

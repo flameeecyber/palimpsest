@@ -63,7 +63,7 @@ case written to out/site
 
 ## Code
 
-**[github.com/flameeecyber/palimpsest](https://github.com/flameeecyber/palimpsest)** — MIT, Python 3.11+, 40 tests that need no model and no disk image.
+**[github.com/flameeecyber/palimpsest](https://github.com/flameeecyber/palimpsest)** — MIT, Python 3.11+, 49 tests that need no model and no disk image.
 
 ```
 src/palimpsest/
@@ -123,7 +123,7 @@ This is the stage with no classical equivalent. `photorec` reports an unrecovera
 
 **4. Narrate.** Two to four sentences per artifact, each citing evidence ids. Then the validator runs.
 
-**5. Query.** Embed the question, take the cosine top-k over the case, answer with artifact citations.
+**5. Query.** Embed the question, take the cosine top-k over the case, answer with artifact citations — and then check the answer the same way the epitaphs are checked. More on that below, because the first version did not.
 
 The model also decides *which* files get attention: `select_for_narration()` uses the triage score, so a screenshot of a login page is skipped while a photograph of two people is not. Remove the model and the case does not just get quieter — it gets a different set of eulogies.
 
@@ -157,6 +157,37 @@ One repair sits before the checks, because the model kept making the same bookke
 *The letter's page. Two sentences, five evidence rows, and the percentage is the support score — how much of each sentence is actually in what it cites.*
 
 I want to be precise about what this is: **lexical overlap is a tripwire, not entailment.** A fluent sentence can reuse the right nouns and still be wrong. The defence is layered — the prompt forbids invented relations, the support score catches the crude cases, `verify` re-checks later, and the UI labels speculation differently. It is not a proof. It is a documented, reproducible filter, which is more than most generated text gets.
+
+### The same check, applied to a question
+
+The obvious next feature was a chat box, so I built one: `palimpsest ask` embeds the question, retrieves the ten nearest artifacts, and asks for two to four sentences with artifact ids attached. The first answer it produced was this.
+
+> The recovered photographs [2f3dfa31df], [59125a46a8], [78294c9b10] and [cadaa85ef6] were all created on June 20th, 2019 with an iPhone 8.
+
+Every id is real. Every id is a photograph from the same cluster. One of them was created on June 20th; the others were created on the 15th, the 18th and the 23rd. Retrieval did its job, the citations were correct, and the sentence was false anyway — because **a citation is not a check.**
+
+So the answer now goes through the same machine as an epitaph. `check_answer()` splits it into sentences, requires each sentence to cite an artifact that exists, and extracts every checkable literal — timestamps, years, month-and-day pairs, integers of three digits or more, quoted passages — then looks for each one in the facts of the files that sentence cites.
+
+The rule that catches the sentence above is the quantifier. If a sentence says *all*, *every*, *both*, *each*, *none* or *neither*, the fact has to hold for **every** artifact it cites; otherwise one is enough. *"The file [2f3dfa31df] was created on June 20th, 2019"* passes. The same date stretched over four files is struck, and the strike is fed back once, exactly like a rejected epitaph.
+
+Struck sentences never become the answer. They are printed underneath it, crossed out with the reason. The tool shows you what it refused to say.
+
+The retry is what the check buys you. Same question, same model, second attempt:
+
+```console
+$ palimpsest ask "Which recovered photographs were taken on the same summer
+trip, and what does the letter have to do with them?" --out out
+
+The file [c3d3c9aebb] IMG_2021_0002.png was created on 2019-06-16T18:24:01.
+The file [fb343c5bd6] IMG_2020_0007.png was created on 2019-06-21T18:29:01.
+The file [2f3dfa31df] IMG_2019_0006.png was created on 2019-06-20T18:28:01.
+The file [cb023cb531] IMG_2021_0008.png was created on 2019-06-22T18:30:01.
+The letter [b81c5c8508] letter.txt mentions a box of photographs from a
+summer trip to the coast.
+```
+
+Four true dates instead of one true date repeated four times. It took fifteen minutes on this CPU for the two attempts, which is the honest price of a second opinion when the first one is wrong.
+
 
 ### The ablation
 

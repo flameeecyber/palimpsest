@@ -154,6 +154,14 @@ Recording this matters more than recording what worked.
   prompt asked for four consecutive words; nothing checked. It now asks for six,
   `quotes_content()` checks, and a missing quote triggers the retry instead of a
   strike.
+- The query stage shipped without any check at all, because "it only answers
+  questions, it does not publish prose". The first real answer called four
+  photographs "all created on June 20th, 2019"; one of them was. The citation
+  check that already existed would have passed it. The fix was not a new model
+  or a better prompt — it was noticing that the grounding rule had been applied
+  to the output that looked like writing and not to the output that looked like
+  an answer. `check_answer()` now runs the same idea over sentences and adds a
+  quantifier rule, because "all" was the word that made the sentence false.
 
 ## 7. What was measured, not assumed
 
@@ -164,7 +172,9 @@ Recording this matters more than recording what worked.
 - Prompt processing on this CPU: 3.7 tokens/second. A 1,260-token prompt is
   342 seconds of pure prefill before the first output token exists.
 - Cache hit: 0 s.
-- Test suite: 40 tests, ~1.3 s, no model, no disk image.
+- `palimpsest ask`, one question, ten artifacts of context: 3 m 44 s for one
+  call. The check itself is microseconds.
+- Test suite: 49 tests, ~3.4 s, no model, no disk image.
 
 ## 8. What the agent did not do
 

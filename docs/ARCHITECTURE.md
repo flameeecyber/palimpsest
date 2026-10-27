@@ -262,7 +262,40 @@ only "a large deletion happened on this date", that is all it can say.
 
 ---
 
-## 9. Verify: chain of custody
+## 9. Query: answers under the same arrest
+
+`palimpsest ask` embeds the question, retrieves the ten nearest artifacts, and
+asks the model for two to four sentences with artifact ids attached.
+
+The first real answer to the first real question was this:
+
+> The recovered photographs [2f3dfa31df], [59125a46a8], [78294c9b10] and
+> [cadaa85ef6] were all created on June 20th, 2019 with an iPhone 8.
+
+Every id exists. Every id is a photograph. One of them was created on June 20th.
+The other three were created on the 15th, the 18th and the 23rd. The retrieval
+was right and the sentence was false, which is the failure a citation check
+cannot catch: a citation is not a check.
+
+So the answer goes through the same machine as an epitaph. `check_answer()`
+splits it into sentences, requires each one to cite an artifact that exists,
+and extracts every checkable literal — timestamps, years, month-and-day pairs,
+integers of three digits or more, quoted passages — then looks for each one in
+the facts of the cited artifacts.
+
+The rule that catches the sentence above is the quantifier. If a sentence says
+*all*, *every*, *both*, *each*, *none* or *neither*, the literal has to hold
+for **every** artifact the sentence cites. Otherwise one is enough. A sentence
+that names one file and one date passes; the same date stretched over four
+files is struck, and the strike is fed back to the model once.
+
+Struck sentences are never printed as the answer. They appear below it, crossed
+out with the reason, exactly like a rejected epitaph — the tool shows you what
+it refused to say.
+
+---
+
+## 10. Verify: chain of custody
 
 `manifest.py` writes `out/manifest.json`:
 
@@ -293,7 +326,7 @@ produced by a pinned digest can.
 
 ---
 
-## 10. Durability
+## 11. Durability
 
 Carving a large image takes hours; narration is hundreds of sequential model
 calls. A crash at hour three must not restart the case.
@@ -314,7 +347,7 @@ machines where running a Temporal server is overkill.
 
 ---
 
-## 11. Privacy posture
+## 12. Privacy posture
 
 - The only network call in the codebase is `urllib.request` inside `llm.py`,
   and its host defaults to `http://127.0.0.1:11434`. There is no API-key
@@ -330,7 +363,7 @@ machines where running a Temporal server is overkill.
 
 ---
 
-## 12. Performance envelope
+## 13. Performance envelope
 
 Measured on this machine (15 GB RAM, CPU-only Ollama in Docker, Gemma 3 4B):
 
@@ -351,7 +384,7 @@ large. `--vision-model` and `--model` are separate flags for exactly this.
 
 ---
 
-## 13. Extension points
+## 14. Extension points
 
 - **Prompts** are markdown files in `prompts/`. Editing one changes behaviour
   without touching Python, and `manifest.json` records that it changed.

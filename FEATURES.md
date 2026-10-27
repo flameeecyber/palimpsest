@@ -33,6 +33,7 @@ engineering, not AI, and the README says which is which.
 | Case note | 3–5 sentences over cluster ids and deletion-timeline ids | **yes** |
 | Filename repair | reconstructs a lost name (`_etter.txt` → `letter-to-mum.txt`) as a labelled hypothesis | **yes** |
 | Retrieval Q&A | embed the question, cosine top-k over the case, answer with artifact citations | **yes** |
+| Checked answers | every sentence of an answer must cite a real artifact, and its dates, sizes and quotations must appear in what it cites; universal claims ("all four were...") are tested against every cited file | **yes** |
 | Ablation | runs the baseline and the narrated case over the same evidence and prints the delta | no (measures the model) |
 
 ## Evidence and integrity
@@ -63,7 +64,7 @@ engineering, not AI, and the README says which is which.
 | Name-repair toggle | `--no-name-repair` |
 | CLI | `run`, `ask`, `ablate`, `stats`, `verify`, `doctor` |
 | Make targets | `install`, `doctor`, `sample`, `demo`, `demo-offline`, `test`, `ask`, `ablate`, `clean` |
-| CI | GitHub Actions: compile, 40 tests, offline end-to-end run on a generated image |
+| CI | GitHub Actions: compile, 49 tests, offline end-to-end run on a generated image |
 
 ## Interface
 

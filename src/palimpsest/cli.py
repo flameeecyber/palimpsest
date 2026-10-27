@@ -61,6 +61,12 @@ def cmd_ask(args: argparse.Namespace) -> int:
             artifact = by_id.get(cid)
             if artifact:
                 print(f"  [{cid}] {artifact.display_name} — {artifact.cluster or 'unlinked'}")
+    struck = result.get("struck") or []
+    if struck:
+        print("\nstruck (never shown to the user):")
+        for verdict in struck:
+            print(f'  x  "{verdict["text"]}"')
+            print(f"     -> {verdict['reason']}")
     return 0
 
 
