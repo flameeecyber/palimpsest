@@ -30,7 +30,7 @@ I built the tool to report that residue honestly, including the parts it cannot 
 
 **[The sample case, rendered](https://flameeecyber.github.io/palimpsest/demo/)** — nine recovered files, two hollow tombstones, and the evidence table behind every sentence. Everything on that page was generated on this laptop from a synthetic disk image, and the four commands below reproduce it.
 
-The whole demo is four commands once the package is installed (`pip install -e .`) and the two models are pulled, and none of them touch the network:
+The whole demo is four commands, once the package is installed (`pip install -e .`) and the two models are pulled. None of them touch the network:
 
 ```bash
 ./scripts/make_sample_image.sh          # builds a 128 MB ext4 image, no root, no mount
@@ -73,7 +73,7 @@ src/palimpsest/
   infer.py       stage 3: hypotheses for unrecoverable files
   narrate.py     stage 4: evidence-bound epitaphs
   grounding.py   citation + support validation
-  query.py       stage 5: retrieval with artifact citations
+  query.py       stage 5: retrieval, with the answer checked sentence by sentence
   manifest.py    hashes, prompt pins, tool versions, verify
 ```
 
