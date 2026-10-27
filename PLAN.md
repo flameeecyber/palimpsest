@@ -126,7 +126,7 @@ The lesson is in the repo: a citation is not support. Both checks are needed.
 ## 6. What ships
 
 - A working CLI: `run`, `ask`, `ablate`, `stats`, `verify`, `doctor`.
-- 35 tests that do not need a model.
+- 40 tests that do not need a model.
 - A reproducible sample case with recovered, carved and unrecoverable artifacts.
 - A static case site that works offline.
 - A manifest and a verifier.

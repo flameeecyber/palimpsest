@@ -63,7 +63,7 @@ engineering, not AI, and the README says which is which.
 | Name-repair toggle | `--no-name-repair` |
 | CLI | `run`, `ask`, `ablate`, `stats`, `verify`, `doctor` |
 | Make targets | `install`, `doctor`, `sample`, `demo`, `demo-offline`, `test`, `ask`, `ablate`, `clean` |
-| CI | GitHub Actions: compile, 35 tests, offline end-to-end run on a generated image |
+| CI | GitHub Actions: compile, 40 tests, offline end-to-end run on a generated image |
 
 ## Interface
 

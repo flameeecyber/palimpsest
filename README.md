@@ -2,11 +2,17 @@
 
 **A deleted file isn't gone. It's waiting to be overwritten.**
 
+[![ci](https://github.com/flameeecyber/palimpsest/actions/workflows/ci.yml/badge.svg)](https://github.com/flameeecyber/palimpsest/actions/workflows/ci.yml)
+
 Palimpsest recovers deleted files from a disk image and explains what they were —
 using open-weight models running entirely on your machine. It does not just list
 bytes. It looks at the photographs, groups the files by meaning, works out what
 the unrecoverable ones probably were, and writes an epitaph for each one in
 which **every sentence carries the evidence id it came from**.
+
+**[Read the sample case](https://flameeecyber.github.io/palimpsest/demo/)** — nine
+recovered files, two hollow tombstones, and the evidence table behind every
+sentence. Synthetic image, rendered locally, no JavaScript.
 
 ```console
 $ palimpsest run sample/ghost.img --out out
@@ -278,7 +284,7 @@ src/palimpsest/
 prompts/         editable markdown: triage, cluster, infer, epitaph, case, query, name
 scripts/         sample image builder, placeholder photo generator
 templates/       Jinja2 + one CSS file, fully offline
-tests/           35 tests, no model required
+tests/           40 tests, no model required
 docs/            architecture, judging notes, demo script, agent session notes
 ```
 
@@ -287,7 +293,7 @@ docs/            architecture, judging notes, demo script, agent session notes
 ## Tests
 
 ```bash
-make test        # 35 tests, no Ollama, no disk image
+make test        # 40 tests, no Ollama, no disk image
 ```
 
 The tests cover the parts that must not depend on a model: `fls` parsing,
