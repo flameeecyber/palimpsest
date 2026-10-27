@@ -162,6 +162,10 @@ PYTHONPATH=src .venv/bin/python -m palimpsest ask \
   "What was deleted in the same batch as the letter?" --out out
 ```
 
+Unrecoverable files are always in the context, marked `unrecovered`, because they
+have no embedding to retrieve and they are the most interesting thing in the
+case. Answers about them are expected to hedge.
+
 The answer is checked sentence by sentence. A sentence with no artifact id, an
 invented size, a date that is not in the cited file, or a universal claim
 ("*all* four were taken on...") that only holds for one of them is struck and
@@ -255,12 +259,37 @@ right nouns to say something false. Layered defences, documented limits.
 
 ---
 
+## Tracing
+
+Nine spans, one per phase, on stdout when you ask for them:
+
+```console
+$ PALIMPSEST_TRACE=1 palimpsest run sample/ghost.img --out out
+[span] palimpsest.recover     target=sample/ghost.img 347ms
+[span] palimpsest.enrich      count=9 634ms
+[span] palimpsest.triage      count=9 231ms
+[span] palimpsest.link        count=9 736ms
+[span] palimpsest.infer       count=2 0ms
+[span] palimpsest.names       count=9 0ms
+[span] palimpsest.narrate     count=9 2ms
+[span] palimpsest.manifest    artifacts=11 275ms
+[span] palimpsest.render      artifacts=11 1032ms
+```
+
+Set `SENTRY_DSN` and the same spans go to Sentry instead, with the same fields.
+A span knows how many artifacts it saw, never what they were. This is not
+decoration: during development a `link` span read 193 s and the reason was not
+`link` — a second model call was holding the Ollama slot. Without the span the
+obvious conclusion would have been "clustering is slow", and the fix would have
+gone in the wrong file.
+
 ## Privacy
 
 - The only network client in the codebase is in `llm.py`, and it talks to
   `127.0.0.1:11434`. There is no API-key branch and no remote fallback.
-- `tracing.py` is a no-op unless `SENTRY_DSN` is set; when enabled it sends span
-  names and counts, never file contents.
+- `tracing.py` has two sinks and one call site: Sentry when `SENTRY_DSN` is set,
+  and stderr when `PALIMPSEST_TRACE=1`. With neither it is a no-op. Both send
+  span names, counts and durations, never file contents or evidence values.
 - The rendered site has no CDN, no webfont, no analytics. Copy `out/site/` to a
   USB stick and it still works.
 - Recovered media is copied into `out/site/media/` so the site is portable. That
@@ -290,7 +319,7 @@ src/palimpsest/
 prompts/         editable markdown: triage, cluster, infer, epitaph, case, query, name
 scripts/         sample image builder, placeholder photo generator
 templates/       Jinja2 + one CSS file, fully offline
-tests/           49 tests, no model required
+tests/           52 tests, no model required
 docs/            architecture, judging notes, demo script, agent session notes
 ```
 
@@ -299,7 +328,7 @@ docs/            architecture, judging notes, demo script, agent session notes
 ## Tests
 
 ```bash
-make test        # 49 tests, no Ollama, no disk image
+make test        # 52 tests, no Ollama, no disk image
 ```
 
 The tests cover the parts that must not depend on a model: `fls` parsing,

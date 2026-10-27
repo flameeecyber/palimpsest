@@ -10,6 +10,9 @@ Rules:
   cited file and deletes the sentence when one does not match.
 - Numbers, years and dates are checked character for character against the
   cited files. Copy them, do not compute them.
+- An artifact marked "unrecovered" provably existed and its blocks are gone.
+  What follows "|" for it is a hypothesis, not evidence: report it as a
+  possibility ("probably a photograph") and never as a recovered fact.
 - If the artifacts do not contain the answer, say "The recovered data does not
   answer that." Do not guess.
 - Never infer a person's identity or a relationship.

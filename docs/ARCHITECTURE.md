@@ -347,13 +347,42 @@ machines where running a Temporal server is overkill.
 
 ---
 
+### Tracing the conductor
+
+Every phase is wrapped in a span. With `PALIMPSEST_TRACE=1` the spans print:
+
+```
+[span] palimpsest.recover     target=sample/ghost.img 347ms
+[span] palimpsest.enrich      count=9 634ms
+[span] palimpsest.triage      count=9 231ms
+[span] palimpsest.link        count=9 736ms
+[span] palimpsest.narrate     count=9 2ms
+[span] palimpsest.manifest    artifacts=11 275ms
+[span] palimpsest.render      artifacts=11 1032ms
+```
+
+With `SENTRY_DSN` the same spans go to Sentry. The fields are the same in both
+cases: an operation, a count, a duration. No filename, no evidence value, no
+recovered text. A span is allowed to know that nine artifacts were narrated; it
+is not allowed to know what any of them said.
+
+The spans earned their place once. A `link` span read 193 seconds and the
+temptation was to go and optimise clustering. The span also showed `triage` at
+0.2 s in the same run, which made no sense until the other terminal came into
+view: a second `palimpsest` process was holding the Ollama slot, and `link` was
+waiting for a model that was busy with something else. The bottleneck was a busy
+CPU, not the algorithm. Reading the spans took two minutes and saved an afternoon
+of optimising the wrong file.
+
 ## 12. Privacy posture
 
 - The only network call in the codebase is `urllib.request` inside `llm.py`,
   and its host defaults to `http://127.0.0.1:11434`. There is no API-key
   branch, no fallback to a hosted provider, no "if Ollama is down, use…".
-- `tracing.py` is a no-op unless `SENTRY_DSN` is set. When set, it sends span
-  metadata (operation names, counts), never file contents or evidence values.
+- `tracing.py` has two sinks: Sentry when `SENTRY_DSN` is set, stderr when
+  `PALIMPSEST_TRACE=1`, and nothing when neither is. Both carry operation
+  names, counts and durations. Neither carries a filename, an evidence value or
+  a byte of recovered content.
 - The rendered site copies media into `out/site/media/` so it works from a USB
   stick. That means recovered photos are duplicated on disk. The README says so.
 - The sample image contains generated gradients and a fictional letter. No real

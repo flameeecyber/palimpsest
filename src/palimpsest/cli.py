@@ -42,12 +42,18 @@ def cmd_run(args: argparse.Namespace) -> int:
 def cmd_ask(args: argparse.Namespace) -> int:
     store = Store(args.out)
     case = store.case
-    artifacts = [a for a in case.artifacts if not a.missing]
+    artifacts = list(case.artifacts)
     vectors, ids = query.load_vectors(store.root / "embeddings")
     if vectors.size == 0:
         print("no embeddings in this case; run without --no-llm first", file=sys.stderr)
         return 2
-    llm = LLM(model=args.model, embed_model=args.embed_model)
+    # Same cache the pipeline uses: asking the same question twice costs nothing,
+    # which is what makes the stage testable at all on a CPU.
+    llm = LLM(
+        model=args.model,
+        embed_model=args.embed_model,
+        cache_dir=str(store.root / "cache"),
+    )
     try:
         result = query.ask(args.question, artifacts, vectors, ids, llm, top_k=args.top_k)
     except LLMError as exc:
@@ -173,7 +179,12 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--model", default="gemma3:4b")
     run.add_argument("--embed-model", default="nomic-embed-text")
     run.add_argument("--vision-model", default=None, help="separate vision model (default: --model)")
-    run.add_argument("--vision-limit", type=int, default=8, help="triage only the N most promising images")
+    run.add_argument(
+        "--vision-limit",
+        type=int,
+        default=8,
+        help="triage only the N most promising images; 0 skips triage",
+    )
     run.add_argument("--no-name-repair", action="store_true", help="skip filename reconstruction")
     run.add_argument("--no-llm", action="store_true", help="factual baseline only (ablation)")
     run.add_argument("--limit", type=int, default=400)

@@ -63,7 +63,7 @@ case written to out/site
 
 ## Code
 
-**[github.com/flameeecyber/palimpsest](https://github.com/flameeecyber/palimpsest)** — MIT, Python 3.11+, 49 tests that need no model and no disk image.
+**[github.com/flameeecyber/palimpsest](https://github.com/flameeecyber/palimpsest)** — MIT, Python 3.11+, 52 tests that need no model and no disk image.
 
 ```
 src/palimpsest/
@@ -148,6 +148,10 @@ struck = [c for c in claims if c.struck]
 #    support this sentence (support 0.00)"
 ```
 
+![The letter's page under a smaller model: one sentence supported, one struck](https://raw.githubusercontent.com/flameeecyber/palimpsest/main/docs/screenshots/strike.png)
+
+*The same letter, narrated by `gemma3:1b` instead of `gemma3:4b`. One sentence survives with its source at 100%; the other quoted the letter but cited the wrong row, so it is struck on the page with the reason. It is still there — a forensic report that silently deletes its failures is not a forensic report.*
+
 Then the loop feeds the rejection back to the model, once, with the exact strike reason. The second attempt usually quotes the evidence instead of inventing around it. The best attempt wins. That retry loop is the difference between a demo and something that holds up when the model is having a bad day.
 
 One repair sits before the checks, because the model kept making the same bookkeeping mistake: it would write *"IMG_2021_0002.png was created on 2019-06-16T18:24:01 with an iPhone 8"* and cite the filename and the camera, skipping the row that held the timestamp. The year check struck it — correctly, since the cited rows did not contain the date — and the retry frequently repeated it. `complete_citations()` now runs first: if a sentence quotes a timestamp character for character, the row containing it is added to the citation and recorded on the claim as `auto_cited`, so the report never pretends the model cited it. An invented year still dies, because no row contains it. The repair fixes bookkeeping; it cannot manufacture support.
@@ -171,6 +175,19 @@ So the answer now goes through the same machine as an epitaph. `check_answer()` 
 The rule that catches the sentence above is the quantifier. If a sentence says *all*, *every*, *both*, *each*, *none* or *neither*, the fact has to hold for **every** artifact it cites; otherwise one is enough. *"The file [2f3dfa31df] was created on June 20th, 2019"* passes. The same date stretched over four files is struck, and the strike is fed back once, exactly like a rejected epitaph.
 
 Struck sentences never become the answer. They are printed underneath it, crossed out with the reason. The tool shows you what it refused to say.
+
+The unrecoverable files are always in the context, marked `unrecovered`, because they have no embedding to retrieve and they are the most interesting thing in the case. Asked *"which files never came back, and what do you think they were?"*, the model answered with the hedge the prompt requires, and the checker struck the one sentence it could not source:
+
+```console
+$ palimpsest ask "Which files never came back, and what do you think they were?" --out out
+
+The file [0343d28351] was unrecovered and probably a photograph. The file
+[6e82e87c54] was also unrecovered and likely taken on a mobile device.
+
+struck (never shown to the user):
+  x  "Both files have an unknown creation date."
+     -> cites no artifact
+```
 
 The retry is what the check buys you. Same question, same model, second attempt:
 
@@ -267,7 +284,24 @@ I am entering three categories, because these are the three I actually use:
 
 - **Best Use of Gemma** — `gemma3:4b` performs vision triage and evidence-bound narration through local Ollama. During development, `gemma3:1b` was the measured failure case: it cited a filename for a claim about a sunset, and the validator struck it. No Google Cloud, no API key, no data egress.
 - **Best Use of Temporal** — `workflow.py` defines seven activities (recover, triage, link, infer, narrate, manifest, render) with heartbeats, retry policies and a six-hour ceiling on each. The case store is the checkpoint, so a worker that dies mid-case resumes at the last completed phase instead of starting over. I ran the workflow end to end on the sample image; the case it produced passes `palimpsest verify` with 39 checks.
-- **Best Use of Sentry Agent Tracing** — `tracing.py` wraps every stage in a span with counts. It is a no-op unless `SENTRY_DSN` is set, because the tool must run offline; when enabled it sends span names and counts, never file contents or evidence values.
+- **Best Use of Sentry Agent Tracing** — `tracing.py` wraps every stage in a span. With `SENTRY_DSN` set the spans go to Sentry; with `PALIMPSEST_TRACE=1` they print locally, which is how I checked the claim on a machine with no account and no network:
+
+  ```console
+  $ PALIMPSEST_TRACE=1 palimpsest run sample/ghost.img --out out
+  [span] palimpsest.recover     target=sample/ghost.img 347ms
+  [span] palimpsest.enrich      count=9 634ms
+  [span] palimpsest.triage      count=9 231ms
+  [span] palimpsest.link        count=9 736ms
+  [span] palimpsest.infer       count=2 0ms
+  [span] palimpsest.names       count=9 0ms
+  [span] palimpsest.narrate     count=9 2ms
+  [span] palimpsest.manifest    artifacts=11 275ms
+  [span] palimpsest.render      artifacts=11 1032ms
+  ```
+
+  A span knows how many artifacts it saw, never what they were. These are cached timings; a cold run spends 200–700 seconds in `triage` alone.
+
+  The spans also caught a bug I would have misdiagnosed. One run showed `link` at 193 seconds while `triage` took 0.2 s, which is backwards. The cause was not clustering — a second `palimpsest` process was holding the Ollama slot and `link` was queued behind it. Without the span I would have optimised the wrong file.
 
 I am not entering Render, DigitalOcean or .tech: the product is local-first, and putting a real case online would contradict the reason it exists. A demo site could be hosted; the tool should not be.
 

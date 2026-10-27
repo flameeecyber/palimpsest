@@ -58,13 +58,13 @@ engineering, not AI, and the README says which is which.
 |---|---|
 | `doctor` | checks `fls`, `icat`, `istat`, `foremost`, `exiftool`, `ffmpeg`, `pdftotext`, Ollama reachability, required models, optional Python packages |
 | Temporal workflow | six activities (recover, triage, link, infer, narrate, render), retries, heartbeats, resumable after a worker kill |
-| Sentry tracing | opt-in spans around every stage; no-op and offline when `SENTRY_DSN` is unset; never sends file contents |
+| Sentry tracing | opt-in spans around every stage, with a local printer (`PALIMPSEST_TRACE=1`) so the tracing is checkable offline; never sends file contents |
 | Separate vision model | `--vision-model` lets a slow 4B vision model coexist with a fast 1B text model |
 | Triage cap | `--vision-limit N` bounds the expensive stage without dropping artifacts from the case |
 | Name-repair toggle | `--no-name-repair` |
 | CLI | `run`, `ask`, `ablate`, `stats`, `verify`, `doctor` |
 | Make targets | `install`, `doctor`, `sample`, `demo`, `demo-offline`, `test`, `ask`, `ablate`, `clean` |
-| CI | GitHub Actions: compile, 49 tests, offline end-to-end run on a generated image |
+| CI | GitHub Actions: compile, 52 tests, offline end-to-end run on a generated image |
 
 ## Interface
 

@@ -1,14 +1,23 @@
-"""Optional Sentry tracing.
+"""Optional tracing: the same spans to Sentry, or to stderr.
 
 The partner category asks for latency, tokens, cost and debugging evidence.
-When SENTRY_DSN is unset this module is a no-op, so the tool still runs with
-the network off, which is the point.
+Two sinks, one call site:
+
+- `SENTRY_DSN` set  → spans go to Sentry, with counts and durations only.
+- `PALIMPSEST_TRACE=1` → the same spans are printed to stderr, so the tracing
+  claim can be checked on a machine with no network and no account.
+- neither → a no-op, which is the default and the point of the project.
+
+Nothing here ever sends a filename, an evidence value or the contents of a
+recovered file. A span knows how many artifacts it saw, not what they were.
 """
 
 from __future__ import annotations
 
 import contextlib
 import os
+import sys
+import time
 from typing import Any, Iterator
 
 _ENABLED = False
@@ -35,17 +44,34 @@ def init(dsn: str | None = None) -> bool:
         return False
 
 
+def local_enabled() -> bool:
+    """Read the env at call time so a test can turn the printer on."""
+    return os.environ.get("PALIMPSEST_TRACE", "").lower() not in ("", "0", "false", "no")
+
+
+def _report(op: str, data: dict[str, Any], seconds: float) -> None:
+    if not local_enabled():
+        return
+    fields = " ".join(f"{k}={v}" for k, v in data.items())
+    print(f"[span] {op:<22} {fields} {seconds * 1000:.0f}ms", file=sys.stderr)
+
+
 @contextlib.contextmanager
 def span(op: str, **data: Any) -> Iterator[None]:
-    if not _ENABLED:
-        yield
-        return
+    started = time.perf_counter()
     try:
-        import sentry_sdk
+        # ExitStack, not a nested `with`: if Sentry cannot start a span the body
+        # still runs, and an exception from the body is never swallowed.
+        with contextlib.ExitStack() as stack:
+            if _ENABLED:
+                try:
+                    import sentry_sdk
 
-        with sentry_sdk.start_span(op=op, name=op) as current:
-            for key, value in data.items():
-                current.set_data(key, value)
+                    current = stack.enter_context(sentry_sdk.start_span(op=op, name=op))
+                    for key, value in data.items():
+                        current.set_data(key, value)
+                except Exception:  # pragma: no cover
+                    pass
             yield
-    except Exception:  # pragma: no cover
-        yield
+    finally:
+        _report(op, data, time.perf_counter() - started)
