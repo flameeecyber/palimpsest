@@ -188,7 +188,6 @@ class PalimpsestTUI:
             ("Grounded sentences", str(stats.get("grounded", 0))),
             ("Struck sentences", str(stats.get("struck", 0))),
             ("Grounded ratio", f"{stats.get('grounded_ratio', 0):.0%}"),
-            ("Narration model", self.case.narration_model or "none"),
         ]
 
         for i, (label, value) in enumerate(lines):
