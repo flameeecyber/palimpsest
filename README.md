@@ -181,6 +181,17 @@ PYTHONPATH=src .venv/bin/python -m palimpsest verify --out out
 Everything above is also a `make` target: `make install doctor sample demo
 demo-offline test ask ablate`.
 
+Launch the terminal UI:
+
+```bash
+PYTHONPATH=src .venv/bin/python -m palimpsest tui --out out
+```
+
+A curses interface over the case store: browse artifacts, open epitaphs with
+evidence tables, run `verify`, and see the ablation table — all without leaving
+the terminal. Keys: `↑↓` scroll, `Enter` open, `←` back, `v` verify, `a` ablate,
+`?` help, `q` quit.
+
 ---
 
 ## The sample case
@@ -319,7 +330,7 @@ src/palimpsest/
 prompts/         editable markdown: triage, cluster, infer, epitaph, case, query, name
 scripts/         sample image builder, placeholder photo generator
 templates/       Jinja2 + one CSS file, fully offline
-tests/           52 tests, no model required
+tests/           55 tests, no model required
 docs/            architecture, judging notes, demo script, agent session notes
 ```
 
@@ -328,7 +339,7 @@ docs/            architecture, judging notes, demo script, agent session notes
 ## Tests
 
 ```bash
-make test        # 52 tests, no Ollama, no disk image
+make test        # 55 tests, no Ollama, no disk image
 ```
 
 The tests cover the parts that must not depend on a model: `fls` parsing,

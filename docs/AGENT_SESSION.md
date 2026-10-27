@@ -174,7 +174,7 @@ Recording this matters more than recording what worked.
 - Cache hit: 0 s.
 - `palimpsest ask`, one question, ten artifacts of context: 3 m 44 s for one
   call. The check itself is microseconds.
-- Test suite: 52 tests, ~3.4 s, no model, no disk image.
+- Test suite: 55 tests, ~3.4 s, no model, no disk image.
 
 ## 8. What the agent did not do
 

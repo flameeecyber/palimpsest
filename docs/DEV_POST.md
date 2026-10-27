@@ -63,7 +63,7 @@ case written to out/site
 
 ## Code
 
-**[github.com/flameeecyber/palimpsest](https://github.com/flameeecyber/palimpsest)** — MIT, Python 3.11+, 52 tests that need no model and no disk image.
+**[github.com/flameeecyber/palimpsest](https://github.com/flameeecyber/palimpsest)** — MIT, Python 3.11+, 55 tests that need no model and no disk image.
 
 ```
 src/palimpsest/
@@ -224,6 +224,28 @@ words about the content                  0            17
 ```
 
 The baseline is not a strawman. `stub_narrate()` was written before the model path and emits only what a `stat` call can prove: *"letter.txt is a document of 208 bytes."* It writes more sentences and says less. That is the whole argument in one table.
+
+### Terminal UI
+
+For case review without a browser, Palimpsest ships a curses terminal UI:
+
+```bash
+PYTHONPATH=src .venv/bin/python -m palimpsest tui --out out
+```
+
+Keys:
+
+| Key | Action |
+|-----|--------|
+| `↑` / `↓` | Scroll through the artifact list |
+| `Enter` | Open the selected artifact's epitaph and evidence |
+| `←` / Backspace | Return to the dashboard |
+| `v` | Run `verify` (chain of custody check) |
+| `a` | Show the ablation table (model vs baseline) |
+| `?` | Show help |
+| `q` | Quit |
+
+The dashboard shows the case summary — recovered vs missing files, clusters, grounded ratio, and struck count. The artifact detail view shows each sentence with its evidence ids, support score, and strike reason, plus the full evidence table. It is the same data as the HTML site, just in the terminal.
 
 ### Chain of custody
 

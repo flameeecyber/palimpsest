@@ -10,6 +10,7 @@ from pathlib import Path
 
 from . import ablate as ablate_mod
 from . import manifest as manifest_mod
+from . import tui as tui_mod
 from . import pipeline, query, tracing
 from .llm import LLM, LLMError
 from .store import Store
@@ -111,6 +112,11 @@ def cmd_render(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_tui(args: argparse.Namespace) -> int:
+    """Launch the curses terminal UI over the case store."""
+    return tui_mod.tui_main(args.out)
+
+
 def cmd_stats(args: argparse.Namespace) -> int:
     case = Store(args.out).case
     print(json.dumps(case.stats(), indent=2))
@@ -210,6 +216,10 @@ def build_parser() -> argparse.ArgumentParser:
     render.add_argument("--out", default="out")
     render.add_argument("--model", default=None, help="label to show in the footer")
     render.set_defaults(func=cmd_render)
+
+    tui = sub.add_parser("tui", help="terminal UI over the case store")
+    tui.add_argument("--out", default="out", help="case directory (default: out)")
+    tui.set_defaults(func=cmd_tui)
 
     stats = sub.add_parser("stats", help="print case statistics")
     stats.add_argument("--out", default="out")

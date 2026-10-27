@@ -62,9 +62,9 @@ engineering, not AI, and the README says which is which.
 | Separate vision model | `--vision-model` lets a slow 4B vision model coexist with a fast 1B text model |
 | Triage cap | `--vision-limit N` bounds the expensive stage without dropping artifacts from the case |
 | Name-repair toggle | `--no-name-repair` |
-| CLI | `run`, `ask`, `ablate`, `stats`, `verify`, `doctor` |
+| CLI | `run`, `ask`, `ablate`, `stats`, `verify`, `doctor`, `tui` |
 | Make targets | `install`, `doctor`, `sample`, `demo`, `demo-offline`, `test`, `ask`, `ablate`, `clean` |
-| CI | GitHub Actions: compile, 52 tests, offline end-to-end run on a generated image |
+| CI | GitHub Actions: compile, 55 tests, offline end-to-end run on a generated image |
 
 ## Interface
 
